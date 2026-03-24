@@ -21,7 +21,7 @@ public class Game extends Wordmask {
 
     public void play() {
             greetPlayer();
-        while (!isWon()) {
+        while (isNotFinished()) {
             System.out.println(getMaskedWord());
             System.out.println("Attempts left: " + getAttempts());
             System.out.println("Enter a letter: ");
@@ -41,6 +41,10 @@ public class Game extends Wordmask {
                 break;
             }
         }
+    }
+
+    public boolean isNotFinished() {
+        return attempts > 0;
     }
 
     public boolean isWon() {

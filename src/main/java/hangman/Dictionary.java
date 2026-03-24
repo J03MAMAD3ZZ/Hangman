@@ -12,6 +12,7 @@ public class Dictionary {
     private List<String> words;
     private static final int MAX_WORD_LENGTH = 8;
     private final String filePath;
+    private final Random random = new Random();
 
     public Dictionary (String path) throws IOException {
         this.filePath = path;
@@ -40,7 +41,6 @@ public class Dictionary {
     }
 
     public String getRandomWord() {
-        Random random = new Random();
         return getWords().get(random.nextInt(getWords().size()));
     }
 
