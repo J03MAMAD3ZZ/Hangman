@@ -22,9 +22,9 @@ public class Wordmask {
         getMaskedWord().append("_".repeat(word.length()));
     }
 
-    public void updateWordMask (String word, char guessedLetter) {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) == guessedLetter) {
+    public void updateWordMask (char guessedLetter) {
+        for (int i = 0; i < getOriginalWord().length(); i++) {
+            if (getOriginalWord().charAt(i) == guessedLetter) {
                 getMaskedWord().setCharAt(i, guessedLetter);
             }
         }
