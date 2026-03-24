@@ -2,17 +2,13 @@ package hangman;
 
 import java.util.Scanner;
 
-//I don't think inheriting from Wordmask class like that is ok
-//but i really need getters from that class.
-//Making a field Wordmask in Game class also turned out to be an ugly decision
-
-
-public class Game extends Wordmask {
+public class Game {
+    private final Wordmask wordmask;
     private int attempts = 6;
     private static final Scanner userInput = new Scanner(System.in);
 
-    public Game(String initialWord) {
-        super(initialWord);
+    public Game(Wordmask wordmask) {
+        this.wordmask = wordmask;
     }
 
     public int getAttempts() {
@@ -22,22 +18,22 @@ public class Game extends Wordmask {
     public void play() {
             greetPlayer();
         while (isNotFinished()) {
-            System.out.println(getMaskedWord());
+            System.out.println(wordmask.getMaskedWord());
             System.out.println("Attempts left: " + getAttempts());
             System.out.println("Enter a letter: ");
             char guessedLetter = userInput.next().charAt(0);
             if (!isCorrectLetter(guessedLetter)) {
                 attempts--;
-                HangmanRender.drawHangman(attempts);
+                HangmanRender.drawHangman(getAttempts());
             } else {
-                updateWordMask(getOriginalWord(), guessedLetter);
+                wordmask.updateWordMask(guessedLetter);
             }
 
             if (isLost()) {
-                System.out.println("You lost! The word was: " + getOriginalWord());
+                System.out.println("You lost! The word was: " + wordmask.getOriginalWord());
                 break;
             } else if (isWon()) {
-                System.out.println("Congratulations! You won! The word was: " + getOriginalWord());
+                System.out.println("Congratulations! You won! The word was: " + wordmask.getOriginalWord());
                 break;
             }
         }
@@ -48,7 +44,7 @@ public class Game extends Wordmask {
     }
 
     public boolean isWon() {
-        return getOriginalWord().contentEquals(getMaskedWord());
+        return wordmask.getOriginalWord().contentEquals(wordmask.getMaskedWord());
     }
 
     public boolean isLost() {
@@ -56,7 +52,7 @@ public class Game extends Wordmask {
     }
 
     public boolean isCorrectLetter(char guessedLetter){
-        return getOriginalWord().contains(String.valueOf(guessedLetter));
+        return wordmask.getOriginalWord().contains(String.valueOf(guessedLetter));
     }
 
     public void greetPlayer() {

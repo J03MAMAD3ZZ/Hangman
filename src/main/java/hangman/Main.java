@@ -32,7 +32,7 @@ public class Main {
     }
 
     public void startNewGame() {
-        Game newGame = new Game(dictionary.getRandomWord());
+        Game newGame = new Game(new Wordmask(dictionary.getRandomWord()));
         newGame.play();
     }
 
