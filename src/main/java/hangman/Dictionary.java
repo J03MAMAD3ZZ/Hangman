@@ -14,7 +14,7 @@ public class Dictionary {
     private final String filePath;
     private final Random random = new Random();
 
-    public Dictionary (String path) throws IOException {
+    public Dictionary (String path) {
         this.filePath = path;
         initDictionary();
     }
@@ -33,11 +33,15 @@ public class Dictionary {
         this.words = words;
     }
 
-    private void initDictionary() throws IOException {
-        setWords(Files.readAllLines(Path.of(getFilePath()))
-                        .stream()
-                        .filter(s -> s.length() <= MAX_WORD_LENGTH)
-                        .collect(Collectors.toList()));
+    private void initDictionary() {
+        try {
+            setWords(Files.readAllLines(Path.of(getFilePath()))
+                    .stream()
+                    .filter(s -> s.length() <= MAX_WORD_LENGTH)
+                    .collect(Collectors.toList()));
+        } catch (IOException e) {
+            System.out.println("Error reading the file: " + e.getMessage());
+        }
     }
 
     public String getRandomWord() {

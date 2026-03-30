@@ -56,6 +56,6 @@ public class Game {
     }
 
     public void greetPlayer() {
-        System.out.println("Welcome to Hangman!");
+        System.out.println("Welcome to Hangman!");  
     }
 }
