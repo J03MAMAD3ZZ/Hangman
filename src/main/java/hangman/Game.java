@@ -17,7 +17,7 @@ public class Game {
 
     public void play() {
             greetPlayer();
-        while (isNotFinished()) {
+        while (!isFinished()) {
             System.out.println(wordmask.getMaskedWord());
             System.out.println("Attempts left: " + getAttempts());
             System.out.println("Enter a letter: ");
@@ -39,7 +39,7 @@ public class Game {
         }
     }
 
-    public boolean isNotFinished() {
+    public boolean isFinished() {
         return isWon() || isLost();
     }
 
