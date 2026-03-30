@@ -40,7 +40,7 @@ public class Game {
     }
 
     public boolean isNotFinished() {
-        return attempts > 0;
+        return isWon() || isLost();
     }
 
     public boolean isWon() {
