@@ -1,6 +1,5 @@
 package hangman;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -9,14 +8,11 @@ public class Main {
     private static final Scanner userInput = new Scanner(System.in);
 
 
-    public Main() throws IOException {
-    }
-
-    void main () throws IOException {
+    void main () {
         askForNewGame();
     }
 
-    public void askForNewGame() throws IOException {
+    public void askForNewGame() {
         while (true) {
             System.out.println("Would you like to play again? (Y/N)");
             char userChoice = userInput.next().charAt(0);
